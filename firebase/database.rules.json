@@ -1,0 +1,32 @@
+{
+  "rules": {
+    "users": {
+      ".read": "auth != null",
+      "$uid": { ".write": "auth != null && auth.uid === $uid" }
+    },
+    "userChats": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        "$chatId": { ".write": "auth != null && $chatId.contains(auth.uid)" }
+      }
+    },
+    "chats": {
+      "$chatId": {
+        ".read": "auth != null && $chatId.contains(auth.uid)",
+        ".write": "auth != null && $chatId.contains(auth.uid)"
+      }
+    },
+    "rooms": {
+      "$code": { ".read": "auth != null", ".write": "auth != null" }
+    },
+    "calls": {
+      "$id": { ".read": "auth != null", ".write": "auth != null" }
+    },
+    "incomingCalls": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null"
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+	<item android:id="@+id/action_call"
+		android:title="@string/call_voice"
+		android:icon="@drawable/call"
+		app:showAsAction="always" />
+	<item android:id="@+id/action_videocall"
+		android:title="@string/call_video"
+		android:icon="@drawable/videocam_outlined"
+		app:showAsAction="always" />
+</menu>

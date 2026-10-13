@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/root"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<com.google.android.material.appbar.MaterialToolbar
+		android:id="@+id/toolbar"
+		android:layout_width="match_parent"
+		android:layout_height="?attr/actionBarSize"
+		app:title="@string/watchparty_title" />
+
+	<com.google.android.exoplayer2.ui.StyledPlayerView
+		android:id="@+id/player"
+		android:layout_width="match_parent"
+		android:layout_height="220dp"
+		android:background="#000000"
+		android:visibility="gone"
+		app:show_buffering="when_playing" />
+
+	<TextView
+		android:id="@+id/text_status"
+		style="@style/TextAppearance.MaterialComponents.Caption"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:paddingHorizontal="16dp"
+		android:paddingVertical="6dp"
+		android:textColor="?android:attr/textColorSecondary"
+		android:visibility="gone" />
+
+	<!-- Before joining -->
+	<ScrollView
+		android:id="@+id/group_setup"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1">
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:padding="16dp">
+
+			<TextView
+				android:id="@+id/text_account"
+				style="@style/TextAppearance.MaterialComponents.Subtitle1"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content" />
+
+			<com.google.android.material.textfield.TextInputLayout
+				style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:hint="@string/watchparty_hint_room">
+				<com.google.android.material.textfield.TextInputEditText
+					android:id="@+id/input_room"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:inputType="textCapCharacters|textNoSuggestions"
+					android:singleLine="true" />
+			</com.google.android.material.textfield.TextInputLayout>
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="12dp"
+				android:orientation="horizontal">
+				<Button
+					android:id="@+id/button_create"
+					style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="@string/watchparty_create" />
+				<Button
+					android:id="@+id/button_join"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="8dp"
+					android:layout_weight="1"
+					android:text="@string/watchparty_join" />
+			</LinearLayout>
+
+			<TextView
+				style="@style/TextAppearance.MaterialComponents.Caption"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:text="@string/watchparty_help"
+				android:textColor="?android:attr/textColorSecondary" />
+		</LinearLayout>
+	</ScrollView>
+
+	<!-- In a room -->
+	<LinearLayout
+		android:id="@+id/group_room"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1"
+		android:orientation="vertical"
+		android:visibility="gone">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_vertical"
+			android:orientation="horizontal"
+			android:paddingHorizontal="16dp"
+			android:paddingTop="8dp">
+			<TextView
+				android:id="@+id/text_room"
+				style="@style/TextAppearance.MaterialComponents.Subtitle2"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1" />
+			<Button
+				android:id="@+id/button_leave"
+				style="@style/Widget.MaterialComponents.Button.TextButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/watchparty_leave" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_vertical"
+			android:orientation="horizontal"
+			android:paddingHorizontal="16dp">
+			<com.google.android.material.textfield.TextInputLayout
+				style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:hint="@string/watchparty_hint_url">
+				<com.google.android.material.textfield.TextInputEditText
+					android:id="@+id/input_url"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:inputType="textUri"
+					android:singleLine="true" />
+			</com.google.android.material.textfield.TextInputLayout>
+			<Button
+				android:id="@+id/button_load_url"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="8dp"
+				android:text="@string/watchparty_load_url" />
+		</LinearLayout>
+
+		<Button
+			android:id="@+id/button_pick_local"
+			style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginHorizontal="16dp"
+			android:text="@string/watchparty_pick_local" />
+
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/list_chat"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1"
+			android:paddingVertical="4dp" />
+
+		<include layout="@layout/layout_chat_input" />
+	</LinearLayout>
+</LinearLayout>
